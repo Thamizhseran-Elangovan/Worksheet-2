@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Batsman {
+    int bcode, innings, notout, runs;
+    string bname;
+    float batavg;
+public:
+    void getdata() {
+        cout << "Enter code: ";
+        cin >> bcode;
+        cout << "Enter name: ";
+        cin >> bname;
+        cout << "Enter innings, notout, runs: ";
+        cin >> innings >> notout >> runs;
+    }
+    void calcavg() {
+        if (innings - notout != 0)
+            batavg = (float)runs / (innings - notout);
+        else
+            batavg = runs;
+    }
+    void displaydata() {
+        cout << bcode << " " << bname << " " << innings << " " << notout << " " << runs << " " << batavg << endl;
+    }
+};
+
+int main() {
+    Batsman b[10];
+    for (int i = 0; i < 10; i++) {
+        b[i].getdata();
+        b[i].calcavg();
+    }
+    cout << "\nDetails of 10 players:\n";
+    for (int i = 0; i < 10; i++) {
+        b[i].displaydata();
+    }
+    return 0;
+}
