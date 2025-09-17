@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Country {
+    string name;
+    long population;
+    long area;
+public:
+    void getdata() {
+        cout << "Enter country name: ";
+        cin >> name;
+        cout << "Enter population: ";
+        cin >> population;
+        cout << "Enter area: ";
+        cin >> area;
+    }
+    string getName() { return name; }
+    long getPopulation() { return population; }
+    long getArea() { return area; }
+    double density() { return (double)population / area; }
+};
+
+int main() {
+    int n;
+    cout << "Enter number of countries: ";
+    cin >> n;
+    Country c[50];
+    for (int i = 0; i < n; i++) {
+        c[i].getdata();
+    }
+
+    int largestAreaIndex = 0, smallestPopIndex = 0, smallestDensityIndex = 0;
+    for (int i = 1; i < n; i++) {
+        if (c[i].getArea() > c[largestAreaIndex].getArea())
+            largestAreaIndex = i;
+        if (c[i].getPopulation() < c[smallestPopIndex].getPopulation())
+            smallestPopIndex = i;
+        if (c[i].density() < c[smallestDensityIndex].density())
+            smallestDensityIndex = i;
+    }
+
+    cout << "Country with largest area: " << c[largestAreaIndex].getName() << endl;
+    cout << "Country with smallest population: " << c[smallestPopIndex].getName() << endl;
+    cout << "Country with smallest population density: " << c[smallestDensityIndex].getName() << endl;
+
+    return 0;
+}
